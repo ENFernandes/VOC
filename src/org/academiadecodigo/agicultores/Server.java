@@ -17,7 +17,7 @@ public class Server {
     public static void main(String[] args) {
 
         Server server = new Server();
-        int players = args.length == 0 ? 2 : Integer.parseInt(args[0]) ;
+        int players = args.length == 0 ? 3 : Integer.parseInt(args[0]) ;
         server.dispatch(PORT, players);
     }
 

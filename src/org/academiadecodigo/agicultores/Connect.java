@@ -15,6 +15,7 @@ public class Connect implements Runnable {
     private Prompt prompt;
     private LinkedList<Connect> list;
     private Socket clientSocket;
+    private String select;
 
     public Connect(Socket clientSocket, LinkedList list) throws IOException {
         this.list = list;
@@ -35,6 +36,22 @@ public class Connect implements Runnable {
             }
         }
     }
+    public void sendMsgAll(String receivedMessage) throws IOException {
+        for (Connect c : list) {
+            c.out.writeUTF(receivedMessage);
+        }
+    }
+
+    public Socket getClientSocket() {
+        return clientSocket;
+    }
+
+    public void setSelect(String select) {
+        this.select = select;
+    }
+    public String getSelect() {
+        return select;
+    }
 
     public String getName() {
         return name;
@@ -42,10 +59,6 @@ public class Connect implements Runnable {
 
     public LinkedList<Connect> getList() {
         return list;
-    }
-
-    public Socket getClientSocket() {
-        return clientSocket;
     }
 
     @Override
@@ -60,5 +73,7 @@ public class Connect implements Runnable {
             e.printStackTrace();
         }
     }
+
+
 }
 
